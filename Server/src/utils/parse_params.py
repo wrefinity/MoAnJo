@@ -1,7 +1,4 @@
-"""
-Wrap parameters parsing
-As it's quite ugly and messy
-"""
+"""A decorator to ensure parameters bining"""
 from functools import wraps
 from flask_restful import reqparse
 

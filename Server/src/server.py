@@ -1,4 +1,3 @@
-from flasgger import Swagger
 from flask import Flask, jsonify
 from flask.blueprints import Blueprint
 from flask_migrate import Migrate
@@ -20,7 +19,8 @@ migrate = Migrate(server, db)
 
 for blueprint in vars(routes).values():
     if isinstance(blueprint, Blueprint):
-        server.register_blueprint(blueprint, url_prefix=config.APPLICATION_ROOT)
+        server.register_blueprint(
+            blueprint, url_prefix=config.APPLICATION_ROOT)
 
 """ Error handling """
 
