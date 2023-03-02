@@ -11,3 +11,42 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .navbar-bg {
+  background-image: url('./assets/img/model.png');
+  background-size: cover;
+} */
+
+/* Banner  */
+.nav_logo {
+  color: #ff001e;
+  font-style: italic;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+
+.nav_mo {
+  background-color: #d70018;
+  color: aliceblue;
+  padding: 10px;
+}
+
+h3.title-header {
+  border-style: 3px solid #d70018;
+  padding-bottom: 40px;
+}
+
+.product_img {
+  height: 50vh;
+  width: 100px;
+}
+
+/* Footer  */
+.footer {
+  background-color: #d70018;
+  padding: 20px
+}
+
+.footer p {
+  color: aliceblue;
+}
