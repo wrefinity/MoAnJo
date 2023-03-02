@@ -8,7 +8,6 @@ import Footer from '../Footer';
 const LandingPage = () => {
   return (
     <Fragment>
-      <HeadNav />
       <Container fluid>
         <Banner />
         <Row >
@@ -71,7 +70,6 @@ const LandingPage = () => {
             </Card>
           </Col>
         </Row>
-        <Footer />
       </Container>
 
     </Fragment>
