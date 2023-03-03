@@ -20,5 +20,4 @@ class OrderDetail(db.Model, BaseModel, metaclass=MetaBaseModel):
 
     #Foreign Key
     orders_id = db.Column(db.Integer, db.ForeignKey('orders.id'), nullable=False)
-    products_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     #statuses_id = db.Column(db.Integer, db.ForeignKey('statuses.id'), nullable=False)
