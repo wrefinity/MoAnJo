@@ -20,6 +20,7 @@ const About = () => {
                         We take great pride in offering high-quality products at affordable prices.                         
                         We work with reputable suppliers to ensure that our products are of the highest quality. We are constantly adding new products to our inventory, so be sure to check back often for the latest and greatest.                        
                         <p></p>Thank you for choosing MoAnJo. We look forward to serving you and providing you with an exceptional shopping experience. If you have any questions or comments, please do not hesitate to contact us.
+
                     </div>
                 </Row>
             </Container>
@@ -29,3 +30,4 @@ const About = () => {
 }
 
 export default About
+
