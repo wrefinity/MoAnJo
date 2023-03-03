@@ -3,8 +3,8 @@ import sys
 from flask import jsonify, abort
 from flask_restful import Resource
 from flask_restful.reqparse import Argument
-from repositories import CustomerRepository, VerificationTokenRepository
-from utils import parse_params, Notification
+from repositories import CustomerRepository
+from utils import parse_params
 from utils.errors import DataNotFound, DuplicateData
 
 

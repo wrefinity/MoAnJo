@@ -12,7 +12,7 @@ CATEGORY_BLUEPRINT.route(
     "/categories", methods=['GET'])(CategoriesResource.get_all)
 
 CATEGORY_BLUEPRINT.route("/categories/<int:product_category_id>",
-                         methods=['GET'])(CategoriesResource.get_one)
+                         methods=['GET'])(CategoriesResource.get_category)
 
 CATEGORY_BLUEPRINT.route(
     "/categories", methods=['POST'])(CategoriesResource.post)

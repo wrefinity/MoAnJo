@@ -2,9 +2,7 @@ import React, { Fragment } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import shoe from "../../assets/img/jordan.png"
 import sneakers from "../../assets/img/snikkers.png"
-import HeadNav from '../HeadNav';
 import Banner from './Banner';
-import Footer from '../Footer';
 const LandingPage = () => {
   return (
     <Fragment>

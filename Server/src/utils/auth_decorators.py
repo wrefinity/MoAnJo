@@ -5,6 +5,7 @@ from flask import jsonify, request, g
 from .errors import *
 import config
 import sys
+import datetime
 #from repositories import UserRepository
 from repositories import SellerRepository
 
@@ -70,3 +71,29 @@ def seller_auth_required(func):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def encode_auth_token(user_id):
+    try:
+        payload = {
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=5),
+            "iat": datetime.datetime.utcnow(),
+            "sub": user_id
+        }
+        return jwt.encode(
+            payload,
+            config.SECRET_KEY,
+            algorithm='HS256',
+        )
+    except Exception as e:
+        return e
+
+
+def decode_auth_token(auth_token):
+    try:
+        payload = jwt.decode(auth_token, config.SECRET_KEY)
+        return payload['sub']
+    except jwt.ExpiredSignatureError:
+        return "Signature Expired. Please loging"
+    except jwt.InvalidTokenError:
+        return  jsonify({"error": "No user found with provided token"}), 403

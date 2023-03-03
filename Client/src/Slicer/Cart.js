@@ -82,13 +82,13 @@ export const updateCart = createAsyncThunk(
 export const deleteCart = createAsyncThunk(
   "cart/delete",
   async (credentials, ThunkAPI) => {
-    const { userId, productId } = credentials;
+    const { userId, cartId } = credentials;
     try {
       const token =
         ThunkAPI.getState().auth.user.token ??
         JSON.parse(localStorage.getItem("user")).token;
       return requestHandler.axioDeleteHeader(
-        `${API_URL}/delete/${userId}/${productId}`,
+        `${API_URL}/delete/${userId}/${cartId}`,
         {},
         token
       );
