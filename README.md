@@ -7,9 +7,13 @@ The program is section into server and client modules for the server end (AKA ba
 # Requirements
 
 ```
+# FrontEnd
+React
+
 # backend
 Python 3.9 or higher
 MSQL
+
 ```
 
 ```
