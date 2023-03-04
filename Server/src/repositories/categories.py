@@ -58,13 +58,15 @@ class CategoryRepository:
     def create(name):
         """ Create a new category """
         try:
+            print("Testing the router ", name)
             category = ProductCategory(name=name)
             return category.save()
 
         except IntegrityError as e:
             message = e.orig.diag.message_detail
             raise DuplicateData(message)
-        except Exception:
+        except Exception as e:
+            print(e)
             raise InternalServerError
 
     @staticmethod

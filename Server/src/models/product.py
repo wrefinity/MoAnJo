@@ -15,7 +15,7 @@ class Product(db.Model, BaseModel, metaclass=MetaBaseModel):
     price = db.Column(db.Float(10, 2), nullable=False)
     quantity = db.Column(db.Integer)
     description = db.Column(db.String(500), nullable=False)
-    image = db.Column(db.String(100))
+    image = db.Column(db.String(500))
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow)
 

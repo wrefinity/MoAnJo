@@ -82,13 +82,14 @@ class CartRepository:
             raise InternalServerError
 
     @staticmethod
-    def delete(cart_id):
+    def delete(cart_id, customer_id):
         """ Delete a cart by id """
-        if not cart_id:
+        if not cart_id or customer_id:
             raise DataNotFound(f"Cart not found")
 
         try:
-            query = Cart.query.filter(Cart.id == cart_id).first()
+            query = Cart.query.filter(
+                and_(Cart.id == cart_id, Cart.customer_id == customer_id)).first()
             if not query:
                 raise DataNotFound(f"Cart Detail with {cart_id} not found")
             return query.delete()

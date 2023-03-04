@@ -97,7 +97,7 @@ class CartResource(Resource):
         }
         return jsonify({"data": data})
 
-    def delete(cart_id):
+    def delete(cart_id, customer_id):
         """ delete cart """
-        CartRepository.delete(cart_id=cart_id)
+        CartRepository.delete(cart_id=cart_id, customer_id=customer_id)
         return jsonify({"message": "cart item successfully deleted"})

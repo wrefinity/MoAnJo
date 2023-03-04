@@ -1,7 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
-from .cart import Cart
-from .product import Product
-from .category import ProductCategory
-from .customer import Customer
+
+
 from .admin import Admin
+from .customer import Customer
+from .category import ProductCategory
+from .product import Product
+from .cart import Cart
+from .order import Order

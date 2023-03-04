@@ -49,11 +49,11 @@ export const updateCategories = createAsyncThunk(
   "category/update",
   async (credentials, ThunkAPI) => {
     try {
-      const { _id, ...rest } = credentials;
+      const { id, ...rest } = credentials;
       const token =
         ThunkAPI.getState().auth.user.token ??
         JSON.parse(localStorage.getItem("user")).token;
-      return requestHandler.axioPatchHeader(`${API_URL}/${_id}`, rest, token);
+      return requestHandler.axioPatchHeader(`${API_URL}/${id}`, rest, token);
     } catch (error) {
       const message =
         (error.response &&

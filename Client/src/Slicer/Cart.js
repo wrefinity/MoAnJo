@@ -16,7 +16,7 @@ export const createCart = createAsyncThunk(
         ThunkAPI.getState().auth.user.token ??
         JSON.parse(localStorage.getItem("user")).token;
       return await requestHandler.axioPostHeader(
-        `${API_URL}/add`,
+        `${API_URL}`,
         credentials,
         token
       );
@@ -88,7 +88,7 @@ export const deleteCart = createAsyncThunk(
         ThunkAPI.getState().auth.user.token ??
         JSON.parse(localStorage.getItem("user")).token;
       return requestHandler.axioDeleteHeader(
-        `${API_URL}/delete/${userId}/${cartId}`,
+        `${API_URL}/${cartId}/${userId}`,
         {},
         token
       );
@@ -151,8 +151,6 @@ const Cartlice = createSlice({
       })
       .addCase(getCart.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        console.log("from slice");
-        console.log(payload.data.cart.products);
         state.cart = payload.data.cart.products;
       })
       .addCase(getCart.rejected, (state, { payload }) => {
@@ -169,7 +167,7 @@ const Cartlice = createSlice({
       })
       .addCase(updateCart.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.cart.map((s) => (payload._id === s._id ? payload : s));
+        state.cart.map((s) => (payload.id === s.id ? payload : s));
       })
       //deletecase
       .addCase(deleteCart.pending, (state) => {

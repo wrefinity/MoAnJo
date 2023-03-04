@@ -11,15 +11,15 @@ const HeadNav = () => {
                     <Nav.Link href="/" className='text-light'>Home</Nav.Link>
                     <Nav.Link href="/about" className='text-light' >About</Nav.Link>
                     <Nav.Link href="/contact" className='text-light'>Contact</Nav.Link>
-                    <NavDropdown className="text-center" title="Menu" id="basic-nav-dropdown">
+                    <NavDropdown className="text-light" title="Menu" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/products">
                             Product
                         </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.1"> Orders</NavDropdown.Item>
+                        <NavDropdown.Item href="/orders"> Orders</NavDropdown.Item>
                         <NavDropdown.Item href="/categories">Category</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">
-                            Payments
+                        <NavDropdown.Item href="/orders">
+                        Orders
                         </NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="/login" className='text-light'>Login</Nav.Link>

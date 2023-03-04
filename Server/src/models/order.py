@@ -7,9 +7,9 @@ from .abc import BaseModel, MetaBaseModel
 from datetime import datetime
 
 
-class Oder(db.Model, BaseModel, MetaBaseModel):
+class Order(db.Model, BaseModel, metaclass=MetaBaseModel):
     """
-    The Oder model class
+    The Order model class
     """
 
     __tablename__ = "orders"
@@ -21,10 +21,11 @@ class Oder(db.Model, BaseModel, MetaBaseModel):
     total_cost = db.Column(db.Float, nullable=False)
     delivery_status = db.Column(db.Boolean, nullable=False, default=False)
     delivered_at = db.Column(db.DateTime, nullable=False)
+    delivery_address = db.Column(db.String(50), nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
 
-    #Foreign key
-
-    customer_id = db.Column(db.Integer, db.ForeignKey("customers.id"), nullable=False)
-    products_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
-
-
+    # Foreign key
+    customer_id = db.Column(db.Integer, db.ForeignKey(
+        "customers.id"), nullable=False)
+    products_id = db.Column(db.Integer, db.ForeignKey(
+        'products.id'), nullable=False)

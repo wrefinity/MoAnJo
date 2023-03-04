@@ -9,17 +9,14 @@ import {
     loaderColor,
     validateEmpty,
 } from "../../Utils/InputHelpers";
-import {
-    createOrder,
-    reseter,
-} from "../../Slicer/Order";
+import { fetchProduct } from "../../Slicer/Product";
 import { fetchOrder, createOrder } from "../../Slicer/Order";
 import { useNavigate } from "react-router-dom";
 
 export const OrderForm = () => {
     const navigate = useNavigate();
     const categories = useSelector(fetchOrder);
-
+    const products = useSelector(fetchProduct);
     const [orderData, setOrderData] = useState(
         {
             total_cost: "",
@@ -31,6 +28,10 @@ export const OrderForm = () => {
     )
 
     const { status, message } = useSelector((state) => state.products);
+    const userx = localStorage.getItem("user")
+        ? localStorage.getItem("user")
+        : null;
+    const user = JSON.parse(userx);
     const OrderStatus = ['pending', 'delivered']
     const orderOption = !OrderStatus
         ? ""

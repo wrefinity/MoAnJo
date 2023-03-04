@@ -82,7 +82,8 @@ class ProductRepository:
         except IntegrityError as e:
             message = e.orig.diag.message_detail
             raise DuplicateData(message)
-        except Exception:
+        except Exception as e2:
+            print("error:::::::::", e2)
             raise InternalServerError
 
     @staticmethod

@@ -10,7 +10,7 @@ CART_BLUEPRINT.route(
 CART_BLUEPRINT.route("/carts", methods=['POST'])(CartResource.post)
 CART_BLUEPRINT.route("/carts/<int:cart_id>",
                      methods=['GET'])(CartResource.get_one)
-CART_BLUEPRINT.route("/carts/<int:cart_id>",
+CART_BLUEPRINT.route("/carts/<int:cart_id>/<int:customer_id>",
                      methods=["DELETE"])(CartResource.delete)
 CART_BLUEPRINT.route("/carts/<int:cart_id>",
                      methods=["PUT"])(CartResource.update)

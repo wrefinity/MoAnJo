@@ -7,6 +7,7 @@ from models import Order, db
 from utils.errors import DataNotFound, DuplicateData, InternalServerError
 from sqlalchemy.exc import IntegrityError, DataError
 
+
 class OrderRepository:
     """
     The repository class for the order model
@@ -25,7 +26,8 @@ class OrderRepository:
             raise DataNotFound(f"Order not found!, no detail provided")
 
         try:
-            order = db.session.query(Order).filter(Order.id == order_id).first()
+            order = db.session.query(Order).filter(
+                Order.id == order_id).first()
             return order
 
         except:
@@ -40,14 +42,13 @@ class OrderRepository:
         for order in orders:
             data.append({
                 "id": order.id,
-                "tax": order.tax,
+                "phone_number": order.phone_number,
                 "total_cost": order.total_cost,
                 "delivery_status": order.delivery_status,
                 "delivered_at": order.delivered_at,
+                "delivery_address": order.delivery_address,
                 "customer_id": order.customer_id,
-                "coupon_id": order.coupon_id,
-                "shipping_address_id": order.shipping_address_id,
-                "seller_id": order.seller_id,
+                "product_id": order.product_id,
             })
 
         return data
@@ -59,26 +60,27 @@ class OrderRepository:
             raise DataNotFound(f"Order Detail with {order_id} not found")
         if 'total_cost' in args and args['total_cost'] is not None:
             order.total_cost = args['total_cost']
-        if 'tax' in args and args['tax'] is not None:
-            order.tax = args['tax']
+        if 'phone_number' in args and args['phone_number'] is not None:
+            order.phone_number = args['phone_number']
         if 'delivery_status' in args and args['delivery_status'] is not None:
             order.delivery_status = args['delivery_status']
+        if 'delivery_address' in args and args['delivery_address'] is not None:
+            order.delivery_address = args['delivery_address']
         if 'delivered_at' in args and args['delivered_at'] is not None:
             order.delivered_at = args['delivered_at']
         return order.save()
 
     @staticmethod
-    def create(total_cost, tax, delivery_status, delivered_at, customer_id, shipping_address_id, coupon_id, seller_id):
+    def create(total_cost, delivery_address, phone_number, delivery_status, delivered_at, products_id, customer_id):
         """ Create a new order Details """
         try:
             order_detail = Order(total_cost=total_cost,
-                                 tax=tax,
+                                 delivery_address=delivery_address,
                                  delivery_status=delivery_status,
+                                 phone_number=phone_number,
                                  delivered_at=delivered_at,
                                  customer_id=customer_id,
-                                 shipping_address_id=shipping_address_id,
-                                 coupon_id=coupon_id,
-                                 seller_id=seller_id,
+                                 products_id=products_id,
                                  )
             return order_detail.save()
         except IntegrityError as e:
