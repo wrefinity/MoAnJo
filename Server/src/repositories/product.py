@@ -33,10 +33,10 @@ class ProductRepository:
     def getAll():
         """ Query all products"""
         query = db.session.query(Product).join(ProductCategory).all()
-        product = []
+        products = []
 
         for product in query:
-            product.append({
+            products.append({
                 "id": product.id,
                 "title": product.title,
                 "price": product.price,
@@ -48,7 +48,7 @@ class ProductRepository:
                 "updated_at": product.updated_at
             })
 
-        return product
+        return products
 
     def update(self, product_id, **args):
         """ Update a product details """
@@ -82,8 +82,7 @@ class ProductRepository:
         except IntegrityError as e:
             message = e.orig.diag.message_detail
             raise DuplicateData(message)
-        except Exception as e2:
-            print("error:::::::::", e2)
+        except Exception:
             raise InternalServerError
 
     @staticmethod
