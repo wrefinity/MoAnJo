@@ -73,9 +73,9 @@ const About = () => {
                             <Card>
                                 <Card.Img
                                     variant="top"
-                                    src={wrash}
+                                    src={jkPic}
                                     className="pro_img"
-                                    alt="wrash"
+                                    alt="mathjken"
                                 />
                                 <Card.Body>
                                     <Card.Title>JohnKennedy Ogu</Card.Title>
@@ -87,8 +87,8 @@ const About = () => {
                                         </i>
                                         <span className='flex-cls'>
                                             <FaGooglePlusG />
-                                            <Link to={"https://github.com/wrefinity/"}> <FaGit className="text-danger " /> </Link> <br />
-                                            <Link to={"https://www.linkedin.com/in/ishaku-wreford-andrew-87b334181"}> <FaLinkedin className="text-danger " /> </Link>
+                                            <Link to={"https://github.com/mathjken/"}> <FaGit className="text-danger " /> </Link> <br />
+                                            <Link to={"https://www.linkedin.com/in/ogu-johnkennedy-bb7424100"}> <FaLinkedin className="text-danger " /> </Link>
                                             <FaPhoneAlt />
                                         </span>
                                     </Card.Text>
