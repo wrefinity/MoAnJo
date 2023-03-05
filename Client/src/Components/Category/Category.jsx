@@ -9,6 +9,7 @@ const Category = () => {
         ?.map((cat) => {
             return (
                 <tr key={cat.id}>
+                    <td>{cat?.id}</td>
                     <td>{cat?.created_at}</td>
                     <td>{cat?.name}</td>
                     <td className="p-2">

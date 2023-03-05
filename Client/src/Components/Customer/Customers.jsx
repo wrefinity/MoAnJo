@@ -14,7 +14,7 @@ import {
 const Customers = () => {
     const customers = useSelector(fetchUsers);
     const dispatch = useDispatch();
-    const { status } = useSelector((state) => state.customers);
+    const { status } = useSelector((state) => state.users);
 
     useEffect(() => {
         if (status === "succeeded") {
@@ -26,7 +26,10 @@ const Customers = () => {
     const customerInfo = customers.map((customer) => {
         return (
             <tr key={customer._id}>
-                <td>
+                <td className="p-2">
+                    {customer._id}
+                </td>
+                <td className="p-2">
                     {customer.created_at}
                 </td>
                 <td className="p-2">
@@ -70,7 +73,7 @@ const Customers = () => {
     });
 
     return (
-        <Container fluid>
+        <Container fluid className='mt-5 pt-5 mb-5'>
             <table class="table">
                 <thead>
                     <tr>

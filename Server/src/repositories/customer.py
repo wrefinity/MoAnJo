@@ -53,6 +53,7 @@ class CustomerRepository:
                 "state": cus.state,
                 "city": cus.city,
                 "street_name": cus.street_name,
+                "created_at": cus.created_at,
                 "zipcode": cus.zipcode,
             })
 

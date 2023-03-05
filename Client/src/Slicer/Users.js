@@ -12,10 +12,10 @@ export const getUsers = createAsyncThunk(
   "users/get_all",
   async (_, ThunkAPI) => {
     try {
-      const token =
-        ThunkAPI.getState().auth.user.token ??
-        JSON.parse(localStorage.getItem("user")).token;
-      return await requestHandler.axioGetHeader(`${API_URL}/register`, token);
+      // const token =
+      //   ThunkAPI.getState().auth.user.token ??
+      //   JSON.parse(localStorage.getItem("user")).token;
+      return await requestHandler.axioGet(`${API_URL}`);
     } catch (error) {
       const message =
         (error.response &&
@@ -87,11 +87,13 @@ const userSlice = createSlice({
       })
       .addCase(getUsers.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.users = payload.data;
+        state.users = payload.data.data;
+        state.status = "idle";
       })
       .addCase(getUsers.rejected, (state, { payload }) => {
         state.status = "failed";
         state.message = payload;
+        state.status = "idle";
       })
       //update case
       .addCase(updateUser.pending, (state) => {

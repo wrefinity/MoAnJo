@@ -12,10 +12,10 @@ export const createProduct = createAsyncThunk(
   "products/create",
   async (credentials, ThunkAPI) => {
     try {
-      const token = ThunkAPI.getState().auth.user.token
-        ? ThunkAPI.getState().auth.user.token
-        : JSON.parse(localStorage.getItem("user")).token;
-      await requestHandler.axioPostHeader(API_URL, credentials, token);
+      // const token = ThunkAPI.getState().auth.user.token
+      //   ? ThunkAPI.getState().auth.user.token
+      //   : JSON.parse(localStorage.getItem("user")).token;
+      await requestHandler.axioPost(API_URL, credentials);
       return { success: true };
     } catch (error) {
       const message =

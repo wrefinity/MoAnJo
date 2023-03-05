@@ -65,16 +65,43 @@ class CustomerResource(Resource):
                  help="The first_name of the customer."),
         Argument("last_name", location="json", required=True,
                  help="The last_name of the customer."),
-        Argument("age", location="json", required=True,
-                 help="The age of the customer.")
+        Argument("username", location="json", required=True,
+                 help="The username of the customer."),
+        Argument("email", location="json", required=True,
+                 help="The email of the customer."),
+        Argument("phone", location="json", required=True,
+                 help="The phone of the customer."),
+        Argument("password", location="json", required=True,
+                 help="The password of the customer."),
+        Argument("country", location="json", required=True,
+                 help="The country of the customer."),
+        Argument("state", location="json", required=True,
+                 help="The state of the customer."),
+        Argument("city", location="json", required=True,
+                 help="The city of the customer."),
+        Argument("street_name", location="json", required=True,
+                 help="The street_name of the customer."),
+        Argument("zipcode", location="json", required=True,
+                 help="The zipcode of the customer."),
     )
     def post(username, last_name, first_name, phone, email, city,
              zipcode, street_name, password, state, country):
         """ Create a customer """
         # TODO: Check duplicates
-        customer = CustomerRepository.create(
+
+        cus_check = CustomerRepository.get(username=username)
+        if cus_check:
+            return jsonify({"message": f" customer exits"})
+
+        new_customer = CustomerRepository.create(
             username=username, last_name=last_name, first_name=first_name,
             phone=phone, email=email, city=city, state=state,
             zipcode=zipcode, street_name=street_name,
             password=password, country=country)
+
+        new_customer.set_password(password)
+
+        if len(password) < 6:
+            return jsonify({"error": "Password must be at least 6 characters"}), 400
+        customer = new_customer.save()
         return jsonify({"data": customer.json})

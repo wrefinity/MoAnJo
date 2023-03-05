@@ -16,7 +16,7 @@ import {
 import { fetchcategories } from "../../Slicer/Category";
 import { useNavigate } from "react-router-dom";
 
-export const ProductForm = () => {
+const ProductForm = () => {
     const navigate = useNavigate();
     const categories = useSelector(fetchcategories);
 
@@ -43,7 +43,7 @@ export const ProductForm = () => {
             })
             .map((cat) => {
                 return (
-                    <option key={cat._id} value={cat._id}>
+                    <option key={cat.id} value={cat.id}>
                         {cat.name}
                     </option>
                 );
@@ -148,7 +148,7 @@ export const ProductForm = () => {
                             </FloatingLabel>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Product Image Link</Form.Label>
-                                <Form.Control name="quantity" type="text" placeholder="enter product image link" value={productData.image} onChange={(e) => handleInput(e, setProductData)} />
+                                <Form.Control name="image" type="text" placeholder="enter product image link" value={productData.image} onChange={(e) => handleInput(e, setProductData)} />
                             </Form.Group>
 
                             <div>
@@ -175,3 +175,4 @@ export const ProductForm = () => {
 
     )
 }
+export default ProductForm

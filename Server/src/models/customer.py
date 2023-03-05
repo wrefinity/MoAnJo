@@ -24,7 +24,7 @@ class Customer(db.Model, BaseModel, metaclass=MetaBaseModel):
     country = db.Column(db.String(50))
     state = db.Column(db.String(70))
     city = db.Column(db.String(50))
-    street_name = db.Column(db.String(50))
+    street_name = db.Column(db.String(500))
     zipcode = db.Column(db.String(50))
     created_at = db.Column(db.DateTime(), default=datetime.utcnow)
     updated_at = db.Column(db.DateTime(), default=datetime.utcnow)

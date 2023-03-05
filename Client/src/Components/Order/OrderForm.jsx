@@ -1,6 +1,7 @@
 import React, { Fragment, useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import { Form, Button, Container, Row, Col, FloatingLabel } from "react-bootstrap"
 import { LineWave } from "react-loader-spinner";
 import {
@@ -10,13 +11,14 @@ import {
     validateEmpty,
 } from "../../Utils/InputHelpers";
 import { fetchProduct } from "../../Slicer/Product";
-import { fetchOrder, createOrder } from "../../Slicer/Order";
+import { reseter, createOrder } from "../../Slicer/Order";
 import { useNavigate } from "react-router-dom";
 
 export const OrderForm = () => {
     const navigate = useNavigate();
-    const categories = useSelector(fetchOrder);
+    const { product_id } = useParams();
     const products = useSelector(fetchProduct);
+    const productArray = products?.filter((product) => product._id === product_id)[0];
     const [orderData, setOrderData] = useState(
         {
             total_cost: "",
@@ -26,8 +28,7 @@ export const OrderForm = () => {
             products_id: "",
         }
     )
-
-    const { status, message } = useSelector((state) => state.products);
+    const { status, message } = useSelector((state) => state.orders);
     const userx = localStorage.getItem("user")
         ? localStorage.getItem("user")
         : null;
@@ -70,6 +71,8 @@ export const OrderForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        orderData.products_id = productArray.id
+        orderData.customer_id = user.id
         setFormErrors(validateEmpty(orderData));
         setIsSubmit(true);
     };

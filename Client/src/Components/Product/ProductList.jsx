@@ -25,7 +25,7 @@ const ProductList = () => {
 
     const navigate = useNavigate();
     const productInfo = products.map((product) => {
-        const category = categories.filter(
+        const category = categories?.filter(
             (category) => product.category_id === category.id
         )[0];
         return (
@@ -42,6 +42,7 @@ const ProductList = () => {
                 <td className="p-2">{product.created_at}</td>
                 <td className="p-2">{product.title}</td>
                 <td className="p-2">{product?.price}</td>
+                <td className="p-2">{category['name'] ?? ""}</td>
                 <td className="p-2">{product.quantity}</td>
                 <td className="p-2">{product.description}</td>
                 <td className="p-2">
@@ -76,6 +77,7 @@ const ProductList = () => {
                         <th scope="col">Date</th>
                         <th scope="col">Title</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Description</th>
                         <th scope="col">Control</th>

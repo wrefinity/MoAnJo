@@ -42,6 +42,7 @@ class CategoryRepository:
             data.append({
                 "id": category.id,
                 "name": category.name,
+                "created_at": category.created_at,
             })
 
         return data

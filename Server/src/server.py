@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask.blueprints import Blueprint
 from flask_migrate import Migrate
+from flask_cors import CORS
 
 import config
 import routes
@@ -8,7 +9,8 @@ from models import db
 
 
 server = Flask(__name__)
-
+CORS(server)
+# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 server.debug = config.DEBUG
 server.config["SQLALCHEMY_DATABASE_URI"] = config.DB_URI

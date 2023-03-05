@@ -36,6 +36,7 @@ const CategoryForm = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Categry Created Called")
         setFormErrors(validateEmpty(category));
         setIsSubmit(true);
     };

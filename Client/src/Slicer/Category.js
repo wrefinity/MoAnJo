@@ -12,10 +12,10 @@ export const createCategories = createAsyncThunk(
   "category/create",
   async (credentials, ThunkAPI) => {
     try {
-      const token =
-        ThunkAPI.getState().auth.user.token ??
-        JSON.parse(localStorage.getItem("user")).token;
-      return await requestHandler.axioPostHeader(API_URL, credentials, token);
+      // const token =
+      //   ThunkAPI.getState().auth.user.token ??
+      //   JSON.parse(localStorage.getItem("user")).token;
+      return await requestHandler.axioPost(API_URL, credentials);
     } catch (error) {
       const message =
         (error.response &&
@@ -104,7 +104,7 @@ const categorieslice = createSlice({
       })
       .addCase(createCategories.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.categories.push(payload);
+        state.categories.push(payload.data);
       })
       .addCase(createCategories.rejected, (state, { payload }) => {
         state.status = "failed";
@@ -115,7 +115,7 @@ const categorieslice = createSlice({
       })
       .addCase(getCategories.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.categories = payload.data?.categories;
+        state.categories = payload.data?.data;
         state.status = "idle";
       })
       .addCase(getCategories.rejected, (state, { payload }) => {

@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignIn, faSignOut, faRegistered } from '@fortawesome/free-solid-svg-icons';
 import { setLogout, reseter } from "../Slicer/Auth";
+import { getUsers, reseter as resetUser } from "../Slicer/Users";
 import { createCart, getCart, fetchCart } from "../Slicer/Cart";
 import { reseter as resetCategory, getCategories } from "../Slicer/Category";
 import { reseter as resetProduct, getProduct } from "../Slicer/Product";
@@ -27,14 +28,15 @@ const HeadNav = () => {
             dispatch(getOrder());
         }
         dispatch(getCategories());
+        dispatch(getUsers());
         dispatch(createCart());
         dispatch(getProduct());
         dispatch(resetCategory());
         dispatch(resetProduct());
+        dispatch(resetUser());
     }, [dispatch]);
 
     const handleLogout = () => {
-        console.log("i was called")
         dispatch(setLogout());
         setIsLogout(true);
     };
@@ -67,6 +69,9 @@ const HeadNav = () => {
                             <NavDropdown.Divider />
                             <NavDropdown.Item as={Link} to={"/orders"}>
                                 Orders
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to={"/customers"}>
+                                Customers
                             </NavDropdown.Item>
                         </NavDropdown>
 
