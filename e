@@ -101,8 +101,7 @@ const About = () => {
                 <Row className="justify-content-center">
 
                     <div className="col-md-6 align-items-center">
-                        Welcome to MoAnJo online Shopping Mall! We are a dedicated team of professionals 
-                        from Alx-Holbernton School.
+                        Welcome to MoAnJo online Shopping Mall! We are a dedicated team of professionals from Alx-Holbernton School.
                         This is a portfolio project and part of the requirement to complete
                         the foundation course of the software Engineering program. we are passionate about providing high-quality products to customers online.
                         Our goal is to make your shopping experience easy, convenient, and enjoyable.
@@ -125,3 +124,5 @@ const About = () => {
 }
 
 export default About
+
+
