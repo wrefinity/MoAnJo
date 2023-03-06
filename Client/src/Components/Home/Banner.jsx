@@ -7,8 +7,8 @@ const Banner = () => {
         <div className='banner'>
             <Row className="justify-content-center align-items-center">
                 <Col md={6} className="text-center">
-                    <h1>Welcome to MoAnJo Ecommerce Store!</h1>
-                    <p>Shop the latest trends in fashion, beauty, and more.</p>
+                    <h1>Welcome to MoAnJo  Shopping Store!</h1>
+                    <p>MoAnJo is a Software for ALX portfolio project</p>
                     <Button variant="danger" size="lg">
                         Shop Now
                     </Button>
