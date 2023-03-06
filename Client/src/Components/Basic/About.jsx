@@ -101,7 +101,7 @@ const About = () => {
                 </Row>
                 <Row className="justify-content-center">
 
-                    <div className="col-md-6 align-items-center">
+                    <div className="col-md-6 align-items-center abt">
                         Welcome to MoAnJo online Shopping Mall! We are a dedicated team of professionals
                         from Alx-Holbernton School.
                         This is a portfolio project and part of the requirement to complete
