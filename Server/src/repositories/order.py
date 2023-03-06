@@ -48,7 +48,7 @@ class OrderRepository:
                 "delivered_at": order.delivered_at,
                 "delivery_address": order.delivery_address,
                 "customer_id": order.customer_id,
-                "product_id": order.product_id,
+                "product_id": order.products_id,
             })
 
         return data
@@ -86,7 +86,8 @@ class OrderRepository:
         except IntegrityError as e:
             message = e.orig.diag.message_detail
             raise DuplicateData(message)
-        except Exception:
+        except Exception as er:
+            print(er)
             raise InternalServerError
 
     @staticmethod

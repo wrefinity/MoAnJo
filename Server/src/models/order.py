@@ -19,9 +19,10 @@ class Order(db.Model, BaseModel, metaclass=MetaBaseModel):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     # tax = db.Column(db.Float, nullable=False)
     total_cost = db.Column(db.Float, nullable=False)
-    delivery_status = db.Column(db.Boolean, nullable=False, default=False)
-    delivered_at = db.Column(db.DateTime, nullable=False)
-    delivery_address = db.Column(db.String(50), nullable=False)
+    delivery_status = db.Column(
+        db.String(20), nullable=False, default="pending")
+    delivered_at = db.Column(db.DateTime)
+    delivery_address = db.Column(db.String(100), nullable=False)
     phone_number = db.Column(db.String(20), nullable=False)
 
     # Foreign key

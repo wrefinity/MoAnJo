@@ -47,7 +47,7 @@ const ProductList = () => {
                 <td className="p-2">{product.description}</td>
                 <td className="p-2">
                     <button
-                        className="btn btn-sm btn-primary m-1"
+                        className="btn btn-sm btn-outline-primary m-1"
                         onClick={() => {
                             navigate(`/product/${product.id}`);
                         }}
@@ -55,7 +55,7 @@ const ProductList = () => {
                         Edit
                     </button>
                     <button
-                        className="btn btn-sm btn-danger m-1"
+                        className="btn btn-sm btn-outline-danger m-1"
                         onClick={() => {
                             dispatch(deleteProduct(product));
                             reseter();

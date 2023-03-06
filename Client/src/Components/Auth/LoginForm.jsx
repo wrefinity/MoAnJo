@@ -15,7 +15,7 @@ import { reseter, login } from "../../Slicer/Auth";
 const LoginForm = () => {
     const { user, status, message } = useSelector((state) => state.auth);
     const [loginData, setLogin] = useState({
-        email: "",
+        username: "",
         password: "",
     });
     const [formErrors, setFormErrors] = useState({});
@@ -31,7 +31,7 @@ const LoginForm = () => {
 
     const reset = () => {
         setLogin({
-            email: "",
+            username: "",
             password: "",
         });
     };
@@ -88,18 +88,20 @@ const LoginForm = () => {
                 <Form.Floating className="mb-3">
                     <Form.Control
                         id="floatingInputCustom"
-                        type="email"
+                        type="text"
+                        name="username"
                         placeholder="name@example.com"
-                        value={loginData.email}
+                        value={loginData.username}
                         onChange={(e) => handleInput(e, setLogin)}
                     />
-                    <label htmlFor="floatingInputCustom">Email address</label>
+                    <label htmlFor="floatingInputCustom">Email/Username</label>
                 </Form.Floating>
                 <Form.Floating>
                     <Form.Control
                         id="floatingPasswordCustom"
                         type="password"
                         placeholder="Password"
+                        name="password"
                         value={loginData.password}
                         onChange={(e) => handleInput(e, setLogin)}
                     />

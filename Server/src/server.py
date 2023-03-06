@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
 from flask.blueprints import Blueprint
 from flask_migrate import Migrate
+from sqlalchemy.exc import IntegrityError
 from flask_cors import CORS
+import os
 
 import config
 import routes
-from models import db
+from models import db, Admin
 
 
 server = Flask(__name__)
@@ -19,6 +21,23 @@ db.init_app(server)
 db.app = server
 db.create_all()
 migrate = Migrate(server, db)
+
+username = os.getenv("ADMIN_USERNAME", '')
+email = os.getenv("ADMIN_EMAIL", '')
+first_name = os.getenv("ADMIN_FIRSTNAME", '')
+last_name = os.getenv("ADMIN_LASTNAME", '')
+password = os.getenv("ADMIN_PASSWORD", '')
+phone = os.getenv("ADMIN_PHONE", '')
+
+try:
+    adminx = Admin(username=username, first_name=first_name, last_name=last_name,
+                   email=email, phone=phone)
+    adminx.set_password(password)
+    adminx.save()
+except IntegrityError as e:
+    pass
+except Exception:
+    pass
 
 for blueprint in vars(routes).values():
     if isinstance(blueprint, Blueprint):

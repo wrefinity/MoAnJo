@@ -51,7 +51,8 @@ const Customers = () => {
                 <td className="p-2">{customer.zipcode}</td>
                 <td className="p-2">
                     <Button
-                        className="btn btn-sm btn-primary m-1"
+                        variant='success'
+                        className='ml-5'
                         onClick={() => {
                             navigate(`/customer/${customer._id}`);
                         }}
@@ -59,7 +60,7 @@ const Customers = () => {
                         Edit
                     </Button>
                     <Button
-                        className="btn btn-sm btn-danger m-1"
+                        variant='danger'
                         onClick={() => {
                             dispatch(deleteUser(customer));
                             reseter();

@@ -1,9 +1,10 @@
 """Authentication Resource"""
 import sys
+import os
 from flask import jsonify, abort
 from flask_restful import Resource
 from flask_restful.reqparse import Argument
-from repositories import CustomerRepository
+from repositories import CustomerRepository, AdminRepository
 from utils import parse_params
 from utils.errors import DataNotFound, DuplicateData
 
@@ -21,29 +22,20 @@ class AuthResource(Resource):
     def login(username, password):
         """ Login a customer"""
 
+        ady = os.getenv("ADMIN_USERNAME", '')
+        print(ady)
         try:
-            customer = CustomerRepository.get(username=username)
-            if not customer.check_password(password):
-                abort(401, "Username or Password is incorrect")
-            return jsonify({"data": customer.json})
+            if not ady in username:
+                customer = CustomerRepository.get(username=username)
+                if not customer.check_password(password):
+                    abort(401, "Username or Password is incorrect")
+                return jsonify({"data": customer.json})
+            else:
+                admin = AdminRepository.get(username=username)
+                if not admin.check_password(password):
+                    abort(401, "Username or Password is incorrect")
+                return jsonify({"data": admin.json})
         except DataNotFound:
             abort(401, "Username or Password is incorrect")
         except:
             abort(500)
-
-    @staticmethod
-    @parse_params(
-        Argument("email", required=True, location="json",
-                 help="The email of the customer."),
-        Argument("username", required=True, location="json",
-                 help="The username of the customer."),
-        Argument("password", required=True, location="json",
-                 help="The password of the customer."),
-        Argument("first_name", required=True, location="json",
-                 help="The first_name of the customer."),
-        Argument("last_name", required=True, location="json",
-                 help="The last_name of the customer."),
-        Argument("phone", location="json"),
-    )
-    def register(email, password, username, first_name, last_name, confirm_url, phone=None):
-        pass

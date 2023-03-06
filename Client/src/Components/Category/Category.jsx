@@ -14,7 +14,7 @@ const Category = () => {
                     <td>{cat?.name}</td>
                     <td className="p-2">
                         <button
-                            className="btn btn-sm btn-primary m-1"
+                            className="btn btn-sm btn-outline-danger m-1"
                             onClick={() => {
                                 deleteCategories(cat.id);
                             }}

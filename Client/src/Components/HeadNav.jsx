@@ -9,7 +9,7 @@ import { getUsers, reseter as resetUser } from "../Slicer/Users";
 import { createCart, getCart, fetchCart } from "../Slicer/Cart";
 import { reseter as resetCategory, getCategories } from "../Slicer/Category";
 import { reseter as resetProduct, getProduct } from "../Slicer/Product";
-import { getOrder } from "../Slicer/Order";
+import { getOrder, reseter as resetOrder } from "../Slicer/Order";
 
 const HeadNav = () => {
     const dispatch = useDispatch();
@@ -27,13 +27,16 @@ const HeadNav = () => {
             dispatch(getCart(user?._id));
             dispatch(getOrder());
         }
+        if (user?.username == "admin") {
+            dispatch(getUsers());
+        }
         dispatch(getCategories());
-        dispatch(getUsers());
         dispatch(createCart());
         dispatch(getProduct());
         dispatch(resetCategory());
         dispatch(resetProduct());
         dispatch(resetUser());
+        dispatch(resetOrder());
     }, [dispatch]);
 
     const handleLogout = () => {
@@ -61,18 +64,22 @@ const HeadNav = () => {
                         <Nav.Link as={Link} to={"/about"} className='text-light' >About</Nav.Link>
                         <Nav.Link as={Link} to={"/contact"} className='text-light'>Contact</Nav.Link>
                         <NavDropdown className="text-light" title="Menu" id="basic-nav-dropdown">
-                            <NavDropdown.Item as={Link} to={"/products"}>
-                                Product
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to={"/orders"}> Orders</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to={"/categories"}>Category</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item as={Link} to={"/orders"}>
-                                Orders
-                            </NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to={"/customers"}>
-                                Customers
-                            </NavDropdown.Item>
+                            {user?.username == "admin" ? (
+                                <>
+                                    <NavDropdown.Item as={Link} to={"/products"}>
+                                        Product
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to={"/orders"}> Orders</NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to={"/categories"}>Category</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item as={Link} to={"/orders"}>
+                                        Orders
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item as={Link} to={"/customers"}>
+                                        Customers
+                                    </NavDropdown.Item>
+                                </>
+                            ) : ("")}
                         </NavDropdown>
 
                         {user ? (

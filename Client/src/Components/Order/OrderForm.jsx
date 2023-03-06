@@ -18,12 +18,13 @@ export const OrderForm = () => {
     const navigate = useNavigate();
     const { product_id } = useParams();
     const products = useSelector(fetchProduct);
-    const productArray = products?.filter((product) => product._id === product_id)[0];
+    const productArray = Array.from(products)?.filter((product) => product.id == product_id)[0];
     const [orderData, setOrderData] = useState(
         {
             total_cost: "",
-            delivered_at: "",
+            phone_number: "",
             delivery_status: "",
+            delivery_address: "",
             customer_id: "",
             products_id: "",
         }
@@ -33,6 +34,7 @@ export const OrderForm = () => {
         ? localStorage.getItem("user")
         : null;
     const user = JSON.parse(userx);
+    console.log(user.id)
     const OrderStatus = ['pending', 'delivered']
     const orderOption = !OrderStatus
         ? ""
@@ -53,7 +55,7 @@ export const OrderForm = () => {
     const reset = () => {
         setOrderData({
             total_cost: "",
-            delivered_at: "",
+            phone_number: "",
             delivery_status: "",
             delivery_address: "",
             customer_id: "",
@@ -73,6 +75,8 @@ export const OrderForm = () => {
         e.preventDefault();
         orderData.products_id = productArray.id
         orderData.customer_id = user.id
+        orderData.total_cost = productArray.price
+        console.log(orderData)
         setFormErrors(validateEmpty(orderData));
         setIsSubmit(true);
     };
@@ -83,8 +87,8 @@ export const OrderForm = () => {
             isSubmit &&
             status === "idle"
         ) {
-            dispatch(reseter());
             dispatch(createOrder(orderData));
+            dispatch(reseter());
             setIsSubmit(false);
         }
         if (status === "succeeded") {
@@ -92,7 +96,7 @@ export const OrderForm = () => {
             reset();
             dispatch(reseter());
             setIsSubmit(false);
-            setTimeout(() => navigate("/shop"), 1000);
+            setTimeout(() => navigate("/"), 1000);
         }
         if (formErrors?.all?.length > 1) {
             toast.error(formErrors?.all, { autoClose: 2000 });
@@ -114,24 +118,23 @@ export const OrderForm = () => {
                 <Row className="justify-content-center align-items-center">
 
                     <Col md={6}>
-                        <h2 className="text-center text-uppercase"> Place Your Order</h2>
+                        <h2 className="text-center text-uppercase"> Place Your Order for <p className="text-danger">{productArray?.title}</p></h2>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>product Title</Form.Label>
-                                <Form.Control name="title" type="text" placeholder="enter product title" value={orderData.title} onChange={(e) => handleInput(e, setOrderData)} />
+                                <Form.Label> Phone Number </Form.Label>
+                                <Form.Control name="phone_number" type="text" placeholder="enter phone number" value={orderData.phone_number} onChange={(e) => handleInput(e, setOrderData)} />
                             </Form.Group>
-
                             <Form.Group className="mb-3">
                                 <Form.Label>Status</Form.Label>
                                 <Form.Select
                                     aria-label="Default select example"
-                                    name="category_id"
+                                    name="delivery_status"
                                     onChange={(e) => handleInput(e, setOrderData)}>
-                                    <option>Select Product Category</option>
+                                    <option>Select Status</option>
                                     {orderOption}
                                 </Form.Select>
                             </Form.Group>
-                            <FloatingLabel controlId="floatingTextarea2" label="Description">
+                            <FloatingLabel controlId="floatingTextarea2" label="delivery address">
                                 <Form.Control
                                     as="textarea"
                                     value={orderData.delivery_address}

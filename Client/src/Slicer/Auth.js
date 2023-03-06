@@ -21,7 +21,6 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       return await requestHandler.axioPost(`${API_URL}`, credentials);
     } catch (error) {
       const message =
@@ -40,7 +39,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      return await requestHandler.axioPost(`${API_URL}/login`, credentials);
+      return await requestHandler.axioPost("login_customer", credentials);
     } catch (error) {
       const message =
         (error.response &&
@@ -85,7 +84,7 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload;
+        state.user = action.payload.data;
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "failed";
@@ -97,7 +96,7 @@ const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.user = payload;
+        state.user = payload.data;
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.status = "failed";

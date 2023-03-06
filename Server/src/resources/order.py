@@ -97,7 +97,7 @@ class OrderResource(Resource):
             delivery_address=delivery_address,
             phone_number=phone_number,
             delivered_at=delivered_at,
-            product_id=products_id,
+            products_id=products_id,
             customer_id=customer_id,
         )
         data = {
@@ -106,7 +106,7 @@ class OrderResource(Resource):
             "delivery_status": order.delivery_status,
             "delivery_address": order.delivery_address,
             "customer_id": order.customer_id,
-            "product_id": order.product_id,
+            "product_id": order.products_id,
         }
         return jsonify({"data": data})
 

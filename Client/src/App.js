@@ -14,6 +14,7 @@ import RegisterScreen from "./Components/Auth/RegisterScreen";
 import ProductScreen from "./Components/Product/ProductScreen";
 import Customers from "./Components/Customer/Customers";
 import { OrderForm } from "./Components/Order/OrderForm";
+import OrderList from "./Components/Order/OrderList";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/orders" element={<OrderList />} />
           <Route path="/order/:product_id" element={<OrderForm />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
