@@ -23,8 +23,8 @@ Node 16.X.X
 
 ### Useful Resources
 
-1. [REACT-FLASK] (https://blog.miguelgrinberg.com/post/how-to-deploy-a-react--flask-project)
+1. (REACT-FLASK) [https://blog.miguelgrinberg.com/post/how-to-deploy-a-react--flask-project]
 
-2. [Hostinger] (https://www.hostinger.com/tutorials/how-to-install-node-ubuntu?ppc_campaign=google_search_generic_hosting_all&bidkw=defaultkeyword&lo=1029760&gclid=CjwKCAiA3pugBhAwEiwAWFzwdTFl56n7ySz4NGhUz3fRdjcljbGEsBxiR0IBhno_tlmGQMyssJQVkhoCQAwQAvD_BwE)
+2. (Hostinger) [https://www.hostinger.com/tutorials/how-to-install-node-ubuntu?ppc_campaign=google_search_generic_hosting_all&bidkw=defaultkeyword&lo=1029760&gclid=CjwKCAiA3pugBhAwEiwAWFzwdTFl56n7ySz4NGhUz3fRdjcljbGEsBxiR0IBhno_tlmGQMyssJQVkhoCQAwQAvD_BwE]
 
-3. [ALCHEMY PATH] (https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application)
+3. (ALCHEMY PATH) [https://www.digitalocean.com/community/tutorials/how-to-use-flask-sqlalchemy-to-interact-with-databases-in-a-flask-application]
