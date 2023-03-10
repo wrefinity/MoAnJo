@@ -77,7 +77,7 @@ const About = () => {
                                     variant="top"
                                     src={jkPic}
                                     className="pro_img"
-                                    alt="wrash"
+                                    alt="mathjken"
                                 />
                                 <Card.Body>
                                     <Card.Title>JohnKennedy Ogu</Card.Title>
