@@ -24,8 +24,27 @@ How to setup a python virtual environment
 - Create the virtual environment,
 
   ```
-  python -m venv .venv
+  python -m venv venv
   ```
+
+- create virtual enviroment for LINUX
+
+```
+# install pip if not installed
+sudo apt install python3-pip
+
+# install virtualenv
+sudo apt install python3-venv
+
+# check version
+virtualenv --version
+
+# create virtual enviroment
+virtualenv venv
+
+# activate virtual enviroment
+source venv/bin/activate
+```
 
 - Activate the virtual environment
   - for windows
